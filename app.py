@@ -10,5 +10,9 @@ def get_all_post():
     return render_template('index.html', all_post=all_post)
 
 
+@app.route("/posts/<postid>")
+def get_posts():
+
+
 
 app.run()
