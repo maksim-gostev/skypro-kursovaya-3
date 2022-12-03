@@ -1,11 +1,13 @@
-
+import json
 
 def get_posts_all():
     """
      возвращает посты
     :return:
     """
-    pass
+    with open('data/posts.json', 'r', encoding='utf-8') as file:
+        json_file = json.load(file)
+        return json_file
 
 
 def get_posts_by_user(user_name):
