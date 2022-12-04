@@ -17,14 +17,12 @@ def get_all_comments():
 
 
 def get_posts_by_user(user_name):
-    """
-    возвращает посты определенного пользователя.
-    Функция должна вызывать ошибку ValueError если такого пользователя нет
-    и пустой список, если у пользователя нет постов.
-    :param user_name:
-    :return:
-    """
-    pass
+    all_posts = get_posts_all()
+    posts_username = []
+    for post in all_posts:
+        if user_name.lower() in post["poster_name"].lower():
+            posts_username.append(post)
+    return posts_username
 
 
 def get_comments_by_post_id(post_id):
@@ -36,12 +34,15 @@ def get_comments_by_post_id(post_id):
     return comments
 
 def search_for_posts(query):
-    """
-    возвращает список постов по ключевому слову
-    :param query:
-    :return:
-    """
-    pass
+    all_post = get_posts_all()
+    search_posts = []
+    for post in all_post:
+        siring = strip_punctuation_ru(post["content"])
+        if query.lower() in siring.lower().split():
+            search_posts.append(post)
+    return search_posts
+
+
 
 
 def get_post_by_pk(pk):
@@ -49,3 +50,16 @@ def get_post_by_pk(pk):
     for post in all_post:
         if post["pk"] == pk:
             return post
+
+
+def strip_punctuation_ru(string):
+    punctuations = '''!()—[]{};:'"\,<>./?@#$%^&*_~'''
+    new_string = ""
+    for char in string:
+        if char in punctuations:
+            new_string += ' '
+        else:
+            new_string += char
+    new_string = new_string.replace(" - ", " ")
+    return " ".join(new_string.split())
+
