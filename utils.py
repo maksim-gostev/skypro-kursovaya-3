@@ -5,10 +5,20 @@ def get_posts_all():
     возвращает посты
     :return: список постов
     """
+    result_file = []
+
     with open('data/posts.json', 'r', encoding='utf-8') as file:
         json_file = json.load(file)
-        return json_file
 
+
+    for file in json_file:
+        if len(file["content"]) > 50:
+            file['min_comment'] = file["content"][0: 47] + '...'
+            result_file.append(file)
+        else:
+            file['min_comment'] = file["content"]
+            result_file.append(file)
+    return result_file
 
 def get_all_comments():
     with open('data/comments.json', 'r', encoding='utf-8') as file:
