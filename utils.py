@@ -46,10 +46,6 @@ def search_for_posts(query):
 
 def get_post_by_pk(pk):
     all_post = get_posts_all()
-    post_id = []
     for post in all_post:
         if post["pk"] == pk:
-            post_id.append(post)
-    return post_id
-get_post_by_pk(1)
-
+            return post
