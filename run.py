@@ -1,10 +1,15 @@
 from flask import Flask
 from app.posts.views import post_bluprint
+from app.api.views import api_bluprint
 
 
 app = Flask(__name__)
 
 app.register_blueprint(post_bluprint)
+app.register_blueprint(api_bluprint)
+
+app.config['JSON_AS_ASCII'] = False
+
 
 
 
