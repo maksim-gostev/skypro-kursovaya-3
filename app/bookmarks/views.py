@@ -24,4 +24,9 @@ def get_all_bookmarks():
 def add_bookmarks(post_id):
     all_posts = posts.get_all_posts()
     bookmarks_dao.add_bookmarks(post_id, all_posts)
-    return redirect("bookmarks/", code = 302)
+    return redirect("/bookmarks", code = 302)
+
+@bookmarks_bluprint.route('/remove/<int:post_id>')
+def delite_bookmarks(post_id):
+    bookmarks_dao.delete_bookmarks(post_id)
+    return redirect("/bookmarks", code = 302)

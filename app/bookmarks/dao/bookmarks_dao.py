@@ -32,22 +32,20 @@ class Bookmarks_dao:
         :param bookmarks: список закладок
         """
         with open(self.way_bookmarks, 'w', encoding='utf-8') as file:
-            json.dump(bookmarks, file, ensure_ascii=False)
+            json.dump(bookmarks, file, ensure_ascii=False, sort_keys=True, indent=4)
 
 
-    def add_bookmarks(self, bookmarks_pk: int, all_posts):
+    def add_bookmarks(self, bookmarks_pk: int, all_posts:list[dict]):
         """
         добовляет новую закладку в список
         :param bookmarks_pk: номер поста
         :return: ничего
         """
         all_bookmarks = self.get_all_bookmarks()
-        print(all_posts)
         for post in all_posts:
             if post["pk"] == bookmarks_pk:
                 all_bookmarks.append(post)
-        return all_bookmarks
-        #self.save_booksmarks_to_json(all_bookmarks)
+        self.save_booksmarks_to_json(all_bookmarks)
 
 
     def delete_bookmarks(self,bookmarks_pk: int):
@@ -59,7 +57,7 @@ class Bookmarks_dao:
         all_bookmarks = self.get_all_bookmarks()
         for index, bookmarks in enumerate(all_bookmarks):
             if bookmarks['pk'] == bookmarks_pk:
-                del bookmarks[index]
+                del all_bookmarks[index]
                 break
         self.save_booksmarks_to_json(all_bookmarks)
 

@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request
 
 from app.posts.dao.posts_dao import Posts_dao
 from app.posts.dao.comments_dao import Comments_dao
+
 import config
 
 post_bluprint = Blueprint('post_bluprint', __name__)
