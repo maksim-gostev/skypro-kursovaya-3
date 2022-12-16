@@ -1,12 +1,14 @@
 from flask import Flask
 from app.posts.views import post_bluprint
 from app.api.views import api_bluprint
+from app.bookmarks.views import bookmarks_bluprint
 
 
 app = Flask(__name__)
 
 app.register_blueprint(post_bluprint)
 app.register_blueprint(api_bluprint)
+app.register_blueprint(bookmarks_bluprint)
 
 app.config['JSON_AS_ASCII'] = False
 

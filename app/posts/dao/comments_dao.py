@@ -18,12 +18,16 @@ class Comments_dao:
     def get_comments_by_post_id(self, post_id) -> list[dict]:
         all_comments = self.get_all_comments()
         comments = []
-        for comment in all_comments:
-            if comment["post_id"] == post_id:
-                comments.append(comment)
-        if not comments:
+        if all_comments:
+            for comment in all_comments:
+                if comment["post_id"] == post_id:
+                    comments.append(comment)
+
+            if not comments:
+                return False
+            return comments
+        else:
             return False
-        return comments
 
 
 

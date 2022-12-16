@@ -2,7 +2,6 @@ import json
 
 from json import JSONDecodeError
 
-import config
 
 class Posts_dao:
     def __init__(self, way_posts):
@@ -14,10 +13,12 @@ class Posts_dao:
         получает данные всех постов из json файла
         :return: список словарей
         """
-
-        with open(self.way_posts, 'r', encoding='utf-8') as file:
-            json_file:[list] = json.load(file)
-        return json_file
+        try:
+            with open(self.way_posts, 'r', encoding='utf-8') as file:
+                json_file:[list] = json.load(file)
+            return json_file
+        except (FileNotFoundError,JSONDecodeError):
+            return False
 
 
     def get_posts_by_user(self, user_name: str) -> list[dict]:
@@ -30,14 +31,17 @@ class Posts_dao:
         # списов куда будут добовлятся посты
         posts_username = []
         # цикл поиска и добовления постов
-        for post in all_posts:
-            if user_name.lower() in post["poster_name"].lower():
-                posts_username.append(post)
-        # вывод если постов не найдено
-        if not posts_username:
-            return False
+        if all_posts:
+            for post in all_posts:
+                if user_name.lower() in post["poster_name"].lower():
+                    posts_username.append(post)
+            # вывод если постов не найдено
+            if not posts_username:
+                return False
 
-        return posts_username
+            return posts_username
+        else:
+            return False
 
     def search_for_posts(self, query: str) -> list[dict]:
         """
@@ -60,7 +64,7 @@ class Posts_dao:
                 return False
             return search_posts
         else:
-            False
+            return False
 
 
     def get_post_by_pk(self, pk: int) -> dict:
@@ -70,11 +74,14 @@ class Posts_dao:
         :return: данные поста
         """
         all_posts = self.get_all_posts()
-        for post in all_posts:
-            if post['pk'] == pk:
-                return post
-            else:
-                False
+        print(all_posts)
+        if  all_posts:
+            for post in all_posts:
+                if post['pk'] == pk:
+                    return post
+        else:
+            return False
+
 
     def strip_punctuation_ru(seif, string: str) -> str:
         """
@@ -97,9 +104,10 @@ class Posts_dao:
 
 
 #all_posts = Posts_dao('../../../data/posts.json')
-#with open('../../../data/posts.json')
+#with open('../../../data/posts.json'):
 
-#print(all_posts.search_for_posts('ага'))
+
+#print(all_posts.get_post_by_pk(3))
 
 
 
