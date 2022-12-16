@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request
 
 from app.posts.dao.posts_dao import Posts_dao
 from app.posts.dao.comments_dao import Comments_dao
+from app.bookmarks.dao.bookmarks_dao import Bookmarks_dao
 
 import config
 
@@ -9,6 +10,7 @@ post_bluprint = Blueprint('post_bluprint', __name__)
 
 posts_dao = Posts_dao(config.POSTS_WAY)
 comments_dao = Comments_dao(config.COMMENTS_WAY)
+bookmarks = Bookmarks_dao(config.BOOKMARKS_WAY)
 
 
 @post_bluprint.route('/')
@@ -17,9 +19,10 @@ def get_all_post():
     вывод ленты постов
     :return: выводит ленту постов
     """
+    all_bookmarks = bookmarks.get_all_bookmarks()
     all_post = posts_dao.get_all_posts()
     if all_post:
-        return render_template('index.html', all_post=all_post)
+        return render_template('index.html', all_post=all_post, quantity=len(all_bookmarks))
     else:
         'ошибка на сервере'
 
