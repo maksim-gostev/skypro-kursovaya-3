@@ -49,8 +49,7 @@ class Posts_dao:
         :param query: ключевое слово
         :return: список постов
         """
-        # знаки припинания
-        punctuations = '''!()—[]{};:'"\,<>./?@#$%^&*_~'''
+
         all_posts = self.get_all_posts()
         # список постов
         search_posts = []
@@ -100,15 +99,4 @@ class Posts_dao:
                 new_string += char
         new_string = new_string.replace(" - ", " ")
         return " ".join(new_string.split())
-
-
-#all_posts = Posts_dao('../../../data/posts.json')
-#with open('../../../data/posts.json'):
-
-
-#print(all_posts.get_post_by_pk(3))
-
-
-
-
 
