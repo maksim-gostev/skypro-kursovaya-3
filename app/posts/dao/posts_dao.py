@@ -49,7 +49,7 @@ class Posts_dao:
         :param query: ключевое слово
         :return: список постов
         """
-
+        query = self.strip_punctuation_ru(query)
         all_posts = self.get_all_posts()
         # список постов
         search_posts = []
@@ -99,4 +99,7 @@ class Posts_dao:
                 new_string += char
         new_string = new_string.replace(" - ", " ")
         return " ".join(new_string.split())
+
+
+
 

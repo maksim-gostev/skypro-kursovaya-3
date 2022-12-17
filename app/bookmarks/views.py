@@ -1,7 +1,8 @@
-from flask import Blueprint, render_template, request, redirect
+from flask import Blueprint, render_template, redirect
 
 from app.bookmarks.dao.bookmarks_dao import Bookmarks_dao
 from app.posts.dao.posts_dao import Posts_dao
+from app.posts.dao.utils import tag_replace
 
 import config
 
@@ -15,7 +16,8 @@ bookmarks_dao =Bookmarks_dao(config.BOOKMARKS_WAY)
 def get_all_bookmarks():
     all_bookmarks = bookmarks_dao.get_all_bookmarks()
     if all_bookmarks:
-        return render_template('bookmarks.html', all_bookmarks=all_bookmarks)
+        all_tag_bookmarks = tag_replace(all_bookmarks)
+        return render_template('bookmarks.html', all_bookmarks=all_tag_bookmarks)
     else:
         'ошибка на сервере'
 
