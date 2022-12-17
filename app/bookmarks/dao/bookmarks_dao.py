@@ -3,11 +3,6 @@ import json
 
 from json import JSONDecodeError
 
-from app.posts.dao.posts_dao import Posts_dao
-
-import config
-
-
 
 class Bookmarks_dao:
     def __init__(self, way_bookmarks):
@@ -60,12 +55,3 @@ class Bookmarks_dao:
                 del all_bookmarks[index]
                 break
         self.save_booksmarks_to_json(all_bookmarks)
-
-
-
-
-
-
-
-
-

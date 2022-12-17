@@ -74,7 +74,6 @@ class Posts_dao:
         :return: данные поста
         """
         all_posts = self.get_all_posts()
-        print(all_posts)
         if  all_posts:
             for post in all_posts:
                 if post['pk'] == pk:
