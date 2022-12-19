@@ -82,9 +82,13 @@ def get_post_username(username):
 
 @post_bluprint.route("/tag/<tagname>")
 def search_post_tag(tagname):
+    """
+    вывод постов по тегу
+    :param tagname: тег слово
+    :return: список словарей
+    """
     all_posts = posts_dao.search_for_posts(tagname)
     if all_posts:
-        print(all_posts)
-        return render_template('tag.html', all_posts=all_posts)
+        return render_template('tag.html', all_posts=all_posts, tagname=tagname)
     else:
         'ошибка на сервере'

@@ -73,10 +73,14 @@ class Posts_dao:
         :return: данные поста
         """
         all_posts = self.get_all_posts()
+        result = {}
         if  all_posts:
             for post in all_posts:
                 if post['pk'] == pk:
-                    return post
+                    post['views_count'] += 1
+                    result = post
+            self.save_posts_to_json(all_posts)
+            return result
         else:
             return False
 
@@ -99,6 +103,11 @@ class Posts_dao:
                 new_string += char
         new_string = new_string.replace(" - ", " ")
         return " ".join(new_string.split())
+
+
+    def save_posts_to_json(self, posts) -> list[dict]:
+        with open(self.way_posts, 'w',encoding='utf-8') as file:
+            json.dump(posts, file, ensure_ascii=False, sort_keys=True, indent=4)
 
 
 

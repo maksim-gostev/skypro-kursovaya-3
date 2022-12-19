@@ -1,4 +1,9 @@
 def tag_replace(posts: list[dict]) -> list[dict]:
+    """
+    заменяет слово с "#" на ссылку на это слово
+    :param posts: список словарей постов
+    :return: список словарей постов
+    """
     if type(posts) == list:
         for post in posts:
             content = post['content'].split()
@@ -12,8 +17,8 @@ def tag_replace(posts: list[dict]) -> list[dict]:
         content = posts['content'].split()
         for tag_words in content:
             if tag_words[0] == '#':
-                posts['content'] = posts['content'].replace(tag_words, f'<a href="/tag/{tag_words[1, len(tag_words)]}">{tag_words}</a>')
-                print(posts['content'])
+                words = tag_words.replace('#', '')
+                posts['content'] = posts['content'].replace(tag_words, f'<a href="/tag/{words}">{tag_words}</a>')
         return posts
     else:
         return False

@@ -21,7 +21,7 @@ class Bookmarks_dao:
             return False
 
 
-    def save_booksmarks_to_json(self,bookmarks) ->[list]:
+    def save_booksmarks_to_json(self,bookmarks) ->list[dict]:
         """
         записывает данные всех закладок
         :param bookmarks: список закладок

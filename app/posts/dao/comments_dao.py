@@ -7,6 +7,10 @@ class Comments_dao:
 
 
     def get_all_comments(self) -> list[dict]:
+        """
+        получает данные всех коментариев из json файла
+        :return: список словарей
+        """
         try:
             with open(self.way_comments, 'r', encoding='utf-8') as file:
                 json_file = json.load(file)
@@ -16,7 +20,13 @@ class Comments_dao:
 
 
     def get_comments_by_post_id(self, post_id) -> list[dict]:
+        """
+        поиск комента по номеру поста
+        :param post_id: pk поста
+        :return: список словарей
+        """
         all_comments = self.get_all_comments()
+        # спивок куда будут добавлятся словари коментов
         comments = []
         if all_comments:
             for comment in all_comments:

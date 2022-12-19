@@ -14,6 +14,10 @@ bookmarks_dao =Bookmarks_dao(config.BOOKMARKS_WAY)
 
 @bookmarks_bluprint.route('/')
 def get_all_bookmarks():
+    """
+    выводит ленту закладок
+    :return: список словарей закладок
+    """
     all_bookmarks = bookmarks_dao.get_all_bookmarks()
     if all_bookmarks:
         all_tag_bookmarks = tag_replace(all_bookmarks)
@@ -24,11 +28,21 @@ def get_all_bookmarks():
 
 @bookmarks_bluprint.route('/add/<int:post_id>')
 def add_bookmarks(post_id):
+    """
+    добовляет пост в закладки
+    :param post_id: pk поста
+    :return: перенаправляет на страницу ленты закладок
+    """
     all_posts = posts.get_all_posts()
     bookmarks_dao.add_bookmarks(post_id, all_posts)
     return redirect("/bookmarks", code = 302)
 
 @bookmarks_bluprint.route('/remove/<int:post_id>')
 def delite_bookmarks(post_id):
+    """
+    удаляет пост из списка закладок
+    :param post_id: pk номер поста
+    :return: перенаправляет на страницу ленты закладок
+    """
     bookmarks_dao.delete_bookmarks(post_id)
     return redirect("/bookmarks", code = 302)
