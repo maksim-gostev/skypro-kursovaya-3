@@ -4,7 +4,7 @@ from app.bookmarks.dao.bookmarks_dao import Bookmarks_dao
 from app.posts.dao.posts_dao import Posts_dao
 from app.posts.dao.utils import tag_replace
 
-import config
+import constant
 
 bookmarks_bluprint = Blueprint('bookmarks_bluprint', __name__, url_prefix='/bookmarks')
 

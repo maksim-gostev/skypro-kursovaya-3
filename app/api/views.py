@@ -4,7 +4,7 @@ import logging
 
 
 from app.posts.dao.posts_dao import Posts_dao
-import config
+import constant
 
 api_bluprint = Blueprint('api_bluprint', __name__, url_prefix='/api')
 
