@@ -5,7 +5,7 @@ from app.posts.dao.comments_dao import Comments_dao
 from app.bookmarks.dao.bookmarks_dao import Bookmarks_dao
 from app.posts.dao.utils import tag_replace
 
-import config
+import constant
 
 post_bluprint = Blueprint('post_bluprint', __name__)
 
