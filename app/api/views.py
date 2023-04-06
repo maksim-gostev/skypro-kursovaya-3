@@ -8,7 +8,7 @@ import constant
 
 api_bluprint = Blueprint('api_bluprint', __name__, url_prefix='/api')
 
-posts_dao = Posts_dao(config.POSTS_WAY)
+posts_dao = Posts_dao(constant.POSTS_WAY)
 
 # logging.basicConfig(format='%(asctime)s [%(levelname)s] %(message)s',
 #                     level=logging.INFO,

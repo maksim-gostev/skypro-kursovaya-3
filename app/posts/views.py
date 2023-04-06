@@ -9,9 +9,9 @@ import constant
 
 post_bluprint = Blueprint('post_bluprint', __name__)
 
-posts_dao = Posts_dao(config.POSTS_WAY)
-comments_dao = Comments_dao(config.COMMENTS_WAY)
-bookmarks = Bookmarks_dao(config.BOOKMARKS_WAY)
+posts_dao = Posts_dao(constant.POSTS_WAY)
+comments_dao = Comments_dao(constant.COMMENTS_WAY)
+bookmarks = Bookmarks_dao(constant.BOOKMARKS_WAY)
 
 
 @post_bluprint.route('/')

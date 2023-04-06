@@ -8,9 +8,9 @@ import constant
 
 bookmarks_bluprint = Blueprint('bookmarks_bluprint', __name__, url_prefix='/bookmarks')
 
-posts = Posts_dao(config.POSTS_WAY)
+posts = Posts_dao(constant.POSTS_WAY)
 
-bookmarks_dao =Bookmarks_dao(config.BOOKMARKS_WAY)
+bookmarks_dao =Bookmarks_dao(constant.BOOKMARKS_WAY)
 
 @bookmarks_bluprint.route('/')
 def get_all_bookmarks():
