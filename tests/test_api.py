@@ -1,6 +1,6 @@
 import pytest
 
-from run import app
+from app import app
 
 valid_keys = {"poster_name",
               "poster_avatar",

@@ -42,7 +42,7 @@ def get_posts(post_id):
         tag_post = tag_replace(post)
         return render_template('post.html', post=tag_post, all_comments=all_comments, count_comment=len(all_comments))
     else:
-        'ошибка на сервере'
+        return 'ошибка на сервере'
 
 
 @post_bluprint.route("/search")
